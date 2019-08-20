@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const ModalWrapper = styled.div`
+  transform: ${({ show }) => (show ? 'translateY(0vh)' : 'translateY(-100vh)')};
+  opacity: ${({ show }) => (show ? '1' : '0')}
+`;
+
+const ModalHeader = styled.div``;
+
+const ModalBody = styled.div``;
+
+const ModalFooter = styled.div``;
+
+const App = ({ show, close, children }) => (
+  <ModalWrapper show={show}>
+    <ModalHeader>
+      <h3>Modal Header</h3>
+      <span className="close-modal-btn" onClick={close}>×</span>
+    </ModalHeader>
+    <ModalBody>
+      <p>
+        {children}
+      </p>
+    </ModalBody>
+    <ModalFooter>
+      <button className="btn-cancel" onClick={close}>CLOSE</button>
+      <button className="btn-continue">CONTINUE</button>
+    </ModalFooter>
+  </ModalWrapper>
+);
 
 export default App;
